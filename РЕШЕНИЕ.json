@@ -1,0 +1,799 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Дубы Подземелья",
+        "description": "Описание функций придуманных и реализованных командой Дубы Подземелья",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.bankingapi.ru/extapi/aft/clientInfo/hackathon/v1",
+            "description": "Адрес API в песочнице хакатона"
+        }
+    ],
+    "paths": {
+        "/deposit-consents": {
+            "post": {
+                "operationId": "CreateDepositConsent",
+                "tags": [
+                    "Deposits"
+                ],
+                "summary": "Создание согласия на открытие депозитного счета",
+                "description": "Позволяет клиенту предоставить согласие на открытие нового депозитного счета.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на создание согласия на открытие депозитного счета",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "depositType": {
+                                        "type": "string",
+                                        "example": "savings",
+                                        "description": "Тип депозита",
+                                        "oneOf": [
+                                            {}
+                                        ]
+                                    },
+                                    "initialAmount": {
+                                        "type": "number",
+                                        "example": 10000,
+                                        "description": "Сумма первоначального взноса",
+                                        "oneOf": [
+                                            {}
+                                        ],
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Согласие успешно создано"
+                    },
+                    "400": {
+                        "description": "Неверные параметры запроса"
+                    }
+                }
+            }
+        },
+        "/deposit-info/{accountId}": {
+            "get": {
+                "operationId": "GetDepositInfo",
+                "tags": [
+                    "Deposits"
+                ],
+                "summary": "Получение информации о депозите",
+                "description": "Позволяет получить детальную информацию о депозите по идентификатору счета.",
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор депозитного счета"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация по депозиту",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "depositBalance": {
+                                            "type": "number",
+                                            "enum": []
+                                        },
+                                        "interestRate": {
+                                            "type": "number",
+                                            "enum": []
+                                        },
+                                        "startDate": {
+                                            "type": "string"
+                                        },
+                                        "endDate": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Счет не найден"
+                    }
+                }
+            }
+        },
+        "/deposit-renewal": {
+            "post": {
+                "operationId": "RenewDeposit",
+                "tags": [
+                    "Deposits"
+                ],
+                "summary": "Запрос на продление срока депозита",
+                "description": "Позволяет инициировать продление срока депозита.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на продление депозита",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "renewalPeriod": {
+                                        "type": "integer",
+                                        "example": 12,
+                                        "description": "Срок продления в месяцах",
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Депозит успешно продлен"
+                    },
+                    "400": {
+                        "description": "Неверные параметры запроса"
+                    }
+                }
+            }
+        },
+        "/credit-limit-request": {
+            "post": {
+                "operationId": "RequestCreditLimitChange",
+                "tags": [
+                    "Credit-Limit"
+                ],
+                "summary": "Запрос на изменение кредитного лимита",
+                "description": "Позволяет клиенту запросить изменение кредитного лимита.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на изменение кредитного лимита",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "newCreditLimit": {
+                                        "type": "number",
+                                        "example": 50000,
+                                        "description": "Новый запрашиваемый кредитный лимит",
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Запрос на изменение кредитного лимита принят"
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    }
+                }
+            }
+        },
+        "/credit-limit-info": {
+            "get": {
+                "operationId": "GetCreditLimit",
+                "tags": [
+                    "Credit-Limit"
+                ],
+                "summary": "Проверка доступного кредитного лимита",
+                "description": "Предоставляет информацию о текущем доступном кредитном лимите.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о доступном кредитном лимите",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "availableLimit": {
+                                            "type": "number",
+                                            "enum": []
+                                        },
+                                        "currency": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/credit-auto-payment-consent": {
+            "post": {
+                "operationId": "CreateAutoPaymentConsent",
+                "tags": [
+                    "Credit-Limit"
+                ],
+                "summary": "Создание соглашения на автоматическое погашение кредита",
+                "description": "Позволяет клиенту создать соглашение на автоматическое погашение кредита.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Создание соглашения на автоматическое погашение кредита",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "paymentAccountId": {
+                                        "type": "string"
+                                    },
+                                    "maxAmount": {
+                                        "type": "number",
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Соглашение успешно создано",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "consentId": {
+                                            "type": "string",
+                                            "description": "Уникальный идентификатор соглашения"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "enum": [
+                                                "ACTIVE",
+                                                "PENDING",
+                                                "REJECTED"
+                                            ],
+                                            "description": "Статус соглашения"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные параметры запроса"
+                    },
+                    "409": {
+                        "description": "Соглашение уже существует"
+                    }
+                }
+            }
+        },
+        "/loyalty-account": {
+            "post": {
+                "operationId": "CreateLoyaltyAccount",
+                "tags": [
+                    "Loyalty"
+                ],
+                "summary": "Создание накопительного счета",
+                "description": "Позволяет создать новый счет для накопления баллов по программе лояльности.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на создание накопительного счета",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "programId": {
+                                        "type": "string",
+                                        "description": "Идентификатор программы лояльности"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Накопительный счет успешно создан",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "accountId": {
+                                            "type": "string",
+                                            "description": "Уникальный идентификатор накопительного счета"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Неверные параметры запроса"
+                    }
+                }
+            }
+        },
+        "/loyalty-bonus": {
+            "post": {
+                "operationId": "AddLoyaltyBonus",
+                "tags": [
+                    "Loyalty"
+                ],
+                "summary": "Начисление бонусных баллов",
+                "description": "Позволяет добавить бонусные баллы на накопительный счет клиента.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на начисление баллов",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "accountId": {
+                                        "type": "string",
+                                        "description": "Идентификатор накопительного счета"
+                                    },
+                                    "bonusPoints": {
+                                        "type": "integer",
+                                        "example": 100,
+                                        "description": "Количество начисляемых баллов",
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Баллы успешно начислены",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "newBalance": {
+                                            "type": "integer",
+                                            "description": "Новый баланс баллов на счету",
+                                            "enum": []
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    },
+                    "404": {
+                        "description": "Счет не найден"
+                    }
+                }
+            }
+        },
+        "/loyalty-redemption": {
+            "post": {
+                "operationId": "RedeemLoyaltyPoints",
+                "tags": [
+                    "Loyalty"
+                ],
+                "summary": "Списание баллов для оплаты услуг",
+                "description": "Позволяет списать баллы для оплаты товаров или услуг.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на списание баллов",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "accountId": {
+                                        "type": "string",
+                                        "description": "Идентификатор накопительного счета"
+                                    },
+                                    "redeemAmount": {
+                                        "type": "integer",
+                                        "example": 500,
+                                        "description": "Количество баллов для списания",
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Баллы успешно списаны",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "remainingBalance": {
+                                            "type": "integer",
+                                            "description": "Оставшийся баланс баллов",
+                                            "enum": []
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    },
+                    "403": {
+                        "description": "Недостаточно баллов для списания"
+                    },
+                    "404": {
+                        "description": "Счет не найден"
+                    }
+                }
+            }
+        },
+        "/investment-portfolio": {
+            "post": {
+                "operationId": "CreateInvestmentPortfolio",
+                "tags": [
+                    "Investments"
+                ],
+                "summary": "Создание нового инвестиционного портфеля",
+                "description": "Позволяет клиенту создать инвестиционный портфель с указанием уровня риска и предпочитаемого типа активов.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на создание инвестиционного портфеля",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "riskLevel": {
+                                        "type": "string",
+                                        "example": "moderate",
+                                        "description": "Уровень риска (low, moderate, high)"
+                                    },
+                                    "preferredAssets": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "stocks",
+                                            "bonds"
+                                        ],
+                                        "description": "Предпочитаемые активы"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Инвестиционный портфель успешно создан"
+                    },
+                    "400": {
+                        "description": "Неверные параметры запроса"
+                    }
+                }
+            }
+        },
+        "/investment-portfolio/{portfolioId}": {
+            "get": {
+                "operationId": "GetInvestmentPortfolio",
+                "tags": [
+                    "Investments"
+                ],
+                "summary": "Просмотр состава инвестиционного портфеля",
+                "description": "Предоставляет детальную информацию о составе инвестиционного портфеля, включая акции, облигации и другие активы.",
+                "parameters": [
+                    {
+                        "name": "portfolioId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор портфеля"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация о составе портфеля"
+                    },
+                    "404": {
+                        "description": "Портфель не найден"
+                    }
+                }
+            }
+        },
+        "/portfolio-adjustment": {
+            "post": {
+                "operationId": "AdjustPortfolio",
+                "tags": [
+                    "Investments"
+                ],
+                "summary": "Запрос на изменение состава портфеля",
+                "description": "Позволяет клиенту изменить состав инвестиционного портфеля, добавляя или удаляя активы.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на изменение состава портфеля",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "portfolioId": {
+                                        "type": "string",
+                                        "description": "Идентификатор портфеля"
+                                    },
+                                    "assetsToAdd": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "Список активов для добавления"
+                                    },
+                                    "assetsToRemove": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "Список активов для удаления"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Изменения в составе портфеля успешно применены"
+                    },
+                    "404": {
+                        "description": "Портфель не найден"
+                    }
+                }
+            }
+        },
+        "/transaction-notifications": {
+            "post": {
+                "operationId": "SetTransactionNotifications",
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Настройка уведомлений по транзакциям",
+                "description": "Позволяет клиенту установить, о каких типах транзакций он хочет получать уведомления.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на настройку уведомлений по транзакциям",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "notificationTypes": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "large_withdrawal",
+                                            "deposit"
+                                        ],
+                                        "description": "Типы уведомлений по транзакциям"
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Настройки уведомлений обновлены"
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    }
+                }
+            }
+        },
+        "/notification-limits": {
+            "post": {
+                "operationId": "SetNotificationLimits",
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Настройка лимитов для уведомлений",
+                "description": "Позволяет клиенту установить минимальный лимит для транзакций, о которых он хочет получать уведомления.",
+                "parameters": [
+                    {
+                        "name": "x-customer-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Уникальный идентификатор клиента"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Запрос на установку лимитов для уведомлений",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "transactionLimit": {
+                                        "type": "number",
+                                        "example": 1000,
+                                        "description": "Минимальная сумма транзакции для уведомлений",
+                                        "enum": []
+                                    }
+                                },
+                                "additionalProperties": false
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Лимит уведомлений успешно установлен"
+                    },
+                    "400": {
+                        "description": "Ошибка в запросе"
+                    }
+                }
+            }
+        }
+    }
+}
