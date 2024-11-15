@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банк</title>
+    <link rel="stylesheet" href="new_schet.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="home.html">Главная</a>
+            <a href="schet.html">Счета</a>
+            <a href="oplata.html">Оплата</a>
+            <a href="investicii.html">Инвестиции</a>
+            <a href="credits.html">Кредиты</a>
+            <a href="other.html">Другое</a>
+            <a href="acount.html">Аккаунт</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="form-section">
+            <h2>Оформить новую экспресс-гарантию</h2>
+            <form class="account-form">
+                <label for="account-type">Назначение покупки</label>
+                <input type="tel" id="name" name="name" required>
+
+                <label for="name">Сумма гарантии</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Вид банковской гарантии</label>
+                <select id="account-type" name="account-type" required>
+                    <option value="savings">Тендерная гарантия</option>
+                    <option value="checking">Обеспечение исполнения обязательств по контракту</option>
+                    <option value="checking">Обеспечение на возврат аванса</option>
+                    <option value="checking">Банковская гарантия на обеспечение гарантийных обязательств</option>
+                    <option value="checking">Гарантия платежа</option>
+
+                </select>
+                <label for="phone">Дата окончания банковской гарантии</label>
+                <input type="date" id="name" name="name" required>
+
+                <label for="phone">Дата начала банковской гарантии</label>
+                <input type="date" id="name" name="name" required>
+
+                <label for="phone">Информация об организации</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Контактное лицо по гарантиям</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Данные об Учредителях</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="phone">Ссылка на документы</label>
+                <input type="text" id="name" name="name" required>
+                <button type="submit" class="submit-button">Отправить</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>ДУБЫ ПОДЗЕМЕЛЬЯ</p>
+            <p>ТГТУ им. Л.Н.Толстого</p>
+        </footer>
+    </main>
+</body>
+</html>

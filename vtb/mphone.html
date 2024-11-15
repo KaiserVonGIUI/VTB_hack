@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Банк</title>
+    <link rel="stylesheet" href="new_schet.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="home.html">Главная</a>
+            <a href="schet.html">Счета</a>
+            <a href="oplata.html">Оплата</a>
+            <a href="investicii.html">Инвестиции</a>
+            <a href="credits.html">Кредиты</a>
+            <a href="other.html">Другое</a>
+            <a href="acount.html">Аккаунт</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="form-section">
+            <h2>Оплата мобильной связи</h2>
+            <form class="account-form">
+                <label for="name">Номер телефона</label>
+                <input type="tel" id="name" name="name" required>
+
+                <label for="email">Опператор</label>
+                <select id="account-type" name="account-type" required>
+                    <option value="savings">T2</option>
+                    <option value="checking">MTC</option>
+                    <option value="checking">Beeline</option>
+
+                </select>
+                <button type="submit" class="submit-button">Отправить</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>ДУБЫ ПОДЗЕМЕЛЬЯ</p>
+            <p>ТГТУ им. Л.Н.Толстого</p>
+        </footer>
+    </main>
+</body>
+</html>

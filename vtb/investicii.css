@@ -1,0 +1,332 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0B0062;
+    color: white;
+    text-align: center;
+}
+
+/* Header */
+header nav {
+    background-color: #0B0062;
+    padding: 15px;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+main {
+    padding: 30px 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.nav-links {
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+}
+
+.nav-links a, .nav-button {
+    color: #D1D1D1;
+    text-decoration: none;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.nav-button:hover, .nav-links a:hover {
+    background-color: #333399;
+}
+
+.a_1 {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.account-list h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.accounts {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.account-card, .add-account {
+    width: 300px;
+    height: 180px;
+    background-color: #19213B; /* Darker Blue */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.account-card .currency {
+    font-size: 1.2em;
+    color: #A9A9A9;
+}
+
+.account-card .balance {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.account-card .details {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    color: #A9A9A9;
+    font-size: 0.9em;
+}
+
+.add-account {
+    font-size: 3em;
+    color: #A9A9A9;
+}
+
+footer {
+    background-color: #1B0F7C;
+    padding: 20px;
+}
+
+footer p {
+    font-size: 1.2em;
+}
+
+/* Form Section Styles */
+.form-section {
+    margin: 30px auto;
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+    color: white;
+}
+
+.form-section h2 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.account-form label {
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.account-form input, .account-form select {
+    padding: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    background-color: #333399; /* Deep blue background for inputs */
+    color: white;
+}
+
+.account-form input::placeholder, .account-form select {
+    color: #D1D1D1;
+}
+
+.account-form input:focus, .account-form select:focus {
+    outline: 2px solid #6666CC;
+}
+
+.submit-button {
+    background-color: #1A1A6E; /* Slightly darker blue */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: #333399;
+}
+
+.footer {
+    background-color: #333399;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer h3, .footer p {
+    color: white;
+}
+
+.div-block-3 {
+    width: 300px;
+    float: left;
+    clear: left;
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .hero-heading-center-2 {
+    position: relative;
+    padding-top: 10px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
+    border-bottom-color: hsla(212.00000000000006, 38.46%, 92.35%, 1.00);
+    background-color: hsla(216, 33.33%, 97.06%, 0.00);
+  }
+  
+  .hero-heading-center-2:small {
+    padding-top: 60px;
+    padding-right: 15px;
+    padding-bottom: 60px;
+    padding-left: 15px;
+  }
+ .a-2 {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.container {
+    width: 100%;
+    max-width: 940px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .container:medium {
+    max-width: 728px;
+  }
+  
+  .container:tiny {
+    max-width: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+.nav-button {
+    background-color: #333399;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    background-color: #6666CC;
+}
+
+/* Payment Section */
+.payment-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: left;a
+}
+
+.payment-section a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.payment-options {
+    list-style: none;
+    padding: 0;
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+.payment-options li {
+    margin-bottom: 10px;
+}
+
+.investment-section {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.investment-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.investment-details p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.edit-button {
+    background-color: #333399;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.edit-button:hover {
+    background-color: #6666CC;
+}
